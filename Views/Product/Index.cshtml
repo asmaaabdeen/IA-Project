@@ -1,0 +1,42 @@
+﻿@model IEnumerable<try_search.Models.pProduct>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Products</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="Category..." />
+            <input type="submit" class="btn btn-secondary" value="Filter">
+            <button type="button" class="btn btn-primary">Add Product</button>
+    
+    }
+
+</p>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var item in Model)
+        {
+            <div class="col mb-4" style="display:inline-block">
+                <a href="#details" title="@Html.DisplayFor(modelItem => item.name) details">
+                    <div class="card h-100" style="width:200px;margin-left:10px">
+                        <img src="@Html.DisplayFor(modelItem => item.image)" style="width:150px;height:200px" class="card-img-top" alt="...">
+                        <br />
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size:19px;color:darkslategrey">@Html.DisplayFor(modelItem => item.name) </h5>
+
+                            <p class="card-text" style="font-size:15px;color:red">price : @Html.DisplayFor(modelItem => item.price)$</p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+</div>
